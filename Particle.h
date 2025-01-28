@@ -26,6 +26,15 @@ class Particle{
 
         }
 
+        /*void force(Particle *p, double E, double B){
+            double f = (p->charge)*( sum3( E, cross(p->v,B) ) );
+            double a = (1/p->mass)*f;
+
+
+
+
+        }*/
+
     private:
         double mass;
         int charge;
