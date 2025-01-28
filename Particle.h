@@ -21,7 +21,8 @@ class Particle{
             cout << "Mass: "<< p->mass << endl;
             cout << "Charge: " << p->charge << endl;
             for (int i=0; i<3; i++){
-                cout << "Posizione:" << p->r.at(i) << endl;
+                cout << "Posizione " << i << ": " << p->r.at(i) << endl;
+                cout << "Velocità " << i << ": " << p->v.at(i) << endl;
             }
 
         }
