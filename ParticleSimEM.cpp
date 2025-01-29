@@ -14,8 +14,17 @@ int main(int argc, char* argv[]){
     p->getInfo(p);
     delete p;
 
-    Field* E = new Field(1.2, 3.4, 5.6);
-    Field* B = new Field(3.7, 9.2, 0.5);
+    const Field *E = new Field("E",1.2, 3.4, 5.6);
+    const Field *B = new Field("B",3.7, 9.2, 0.5);
+
+    E->getInfo();
+    B->getInfo();
+
+    Field EplusB = Field::sum(*E,*B);
+    EplusB.getInfo();
+
+    double EdotB = Field::dot(*E,*B);
+    cout << "EdotB: " << EdotB << endl;
 
     delete E;
     delete B;
