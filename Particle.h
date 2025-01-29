@@ -7,6 +7,7 @@ using namespace std;
 
 class Particle{
     public:
+        // constructors and destructor
         Particle() : mass(1.0), charge(+1.0), r(Vector3D()), v(Vector3D()) {
             cout << "Particella creata" << endl;
         }
@@ -18,6 +19,7 @@ class Particle{
             cout << "Particella distrutta" << endl;
         }
 
+        // retrieve information
         void getInfo(Particle *p) {
             cout << "Mass: "<< p->mass << endl;
             cout << "Charge: " << p->charge << endl;
@@ -29,8 +31,12 @@ class Particle{
             cout << "v_x: " << p->v.getX(r) << endl;            
             cout << "v_y: " << p->v.getY(r) << endl;            
             cout << "v_z: " << p->v.getZ(r) << endl;            
+        }
 
-            }
+        const Vector3D Force (const Particle &p, const Vector3D &E, const Vector3D &B){
+            // f = q(E + v x B)
+            return Vector3D::mult(p.charge, Vector3D::sum(E,Vector3D::cross(p.v,B)));
+        }
 
     private:
         double mass;

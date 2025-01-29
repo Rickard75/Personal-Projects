@@ -8,17 +8,15 @@ using namespace std;
 class Vector3D {
     public:
         Vector3D(): name("NomeDelVettore"), x(1), y(1), z(1), norm(sqrt(3)) {
-            cout << "Vettore " << name << " creato" << endl;
-            cout << "f(" << 1 << "," << 1 << "," << 1 << "); ";
-            cout << "||f|| = " << norm << endl;
+            cout << "Created " << name << "(" << 1 << "," << 1 << "," << 1 << "); ";
+            cout << "||" << name << "|| = " << norm << endl;
         };
         Vector3D(string name, double x, double y, double z): name(name), x(x), y(y), z(z), norm(sqrt(x*x + y*y + z*z)) {
-            cout << "Vettore " << name << " creato" << endl;
-            cout << "f(" << x << "," << y << "," << z << "); ";
-            cout << "||f|| = " << norm << endl; 
+            cout << "Created " << name << "(" << x << "," << y << "," << z << "); ";
+            cout << "||" << name << "|| = " << norm << endl; 
         };
         ~Vector3D() {
-            cout << "Vettore " << name << " distrutto" << endl;
+            cout << name << " has been destroyed" << endl;
         };
 
         void getInfo() const {
@@ -33,6 +31,10 @@ class Vector3D {
 
         static Vector3D sum(const Vector3D &F1, const Vector3D &F2){
             return Vector3D(F1.name+"plus"+F2.name, F1.x + F2.x, F1.y + F2.y, F1.z + F2.z);
+        }
+
+        static Vector3D mult(double a, const Vector3D &V){
+            return Vector3D(to_string(a)+"*"+V.name, a*V.x, a*V.y, a*V.z);
         }
 
         static double dot(const Vector3D &F1, const Vector3D &F2){
