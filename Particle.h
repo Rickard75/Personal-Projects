@@ -2,14 +2,15 @@
 #define Particle_h
 #include <vector>
 #include <iostream>
+#include "VectorAnalysis.h"
 using namespace std;
 
 class Particle{
     public:
-        Particle() : mass(1.0), charge(+1.0), r({0,0,0}), v({0,0,0}) {
+        Particle() : mass(1.0), charge(+1.0), r(Vector3D()), v(Vector3D()) {
             cout << "Particella creata" << endl;
         }
-        Particle(double m, int chg, vector<double> r, vector<double> v):
+        Particle(double m, int chg, Vector3D r, Vector3D v):
             mass(m), charge(chg), r(r), v(v) {
                 cout << "Particella creata" << endl;
             }
@@ -20,29 +21,22 @@ class Particle{
         void getInfo(Particle *p) {
             cout << "Mass: "<< p->mass << endl;
             cout << "Charge: " << p->charge << endl;
-            for (int i=0; i<3; i++){
-                cout << "Posizione " << i << ": " << p->r.at(i) << endl;
-                cout << "Velocità " << i << ": " << p->v.at(i) << endl;
+            
+            cout << "r_x: " << p->r.getX(r) << endl;
+            cout << "r_y: " << p->r.getY(r) << endl;
+            cout << "r_z: " << p->r.getZ(r) << endl;
+
+            cout << "v_x: " << p->v.getX(r) << endl;            
+            cout << "v_y: " << p->v.getY(r) << endl;            
+            cout << "v_z: " << p->v.getZ(r) << endl;            
+
             }
-
-        }
-
-        /*void force(Particle *p, double E, double B){
-            double f = (p->charge)*( sum3( E, cross(p->v,B) ) );
-            double a = (1/p->mass)*f;
-
-
-
-
-        }*/
 
     private:
         double mass;
         int charge;
-        vector<double> r;
-        vector<double> v;
+        Vector3D r;
+        Vector3D v;
 };
-
-// a new comment
 
 #endif

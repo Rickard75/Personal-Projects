@@ -5,47 +5,56 @@
 #include <cmath>
 using namespace std;
 
-class Field {
+class Vector3D {
     public:
-        Field(): name("NomeDelCampo"), a(1), b(1), c(1), norm(sqrt(3)) {
-            cout << "Campo " << name << " creato" << endl;
+        Vector3D(): name("NomeDelVettore"), x(1), y(1), z(1), norm(sqrt(3)) {
+            cout << "Vettore " << name << " creato" << endl;
             cout << "f(" << 1 << "," << 1 << "," << 1 << "); ";
             cout << "||f|| = " << norm << endl;
         };
-        Field(string name, double a, double b, double c): name(name), a(a), b(b), c(c), norm(sqrt(a*a + b*b + c*c)) {
-            cout << "Campo " << name << " creato" << endl;
-            cout << "f(" << a << "," << b << "," << c << "); ";
+        Vector3D(string name, double x, double y, double z): name(name), x(x), y(y), z(z), norm(sqrt(x*x + y*y + z*z)) {
+            cout << "Vettore " << name << " creato" << endl;
+            cout << "f(" << x << "," << y << "," << z << "); ";
             cout << "||f|| = " << norm << endl; 
         };
-        ~Field() {
-            cout << "Campo " << name << " distrutto" << endl;
+        ~Vector3D() {
+            cout << "Vettore " << name << " distrutto" << endl;
         };
 
         void getInfo() const {
             cout << "----------------" << endl;
             cout << "INFO of " << name << endl;
-            cout << "fx: " << a << endl;
-            cout << "fy: " << b << endl;
-            cout << "fz: " << c << endl;
+            cout << "fx: " << x << endl;
+            cout << "fy: " << y << endl;
+            cout << "fz: " << z << endl;
             cout << "norm: " << norm << endl;
             cout << "----------------" << endl;
         }
 
-        static Field sum(const Field &F1, const Field &F2){
-            return Field(F1.name+"plus"+F2.name, F1.a + F2.a, F1.b + F2.b, F1.c + F2.c);
+        static Vector3D sum(const Vector3D &F1, const Vector3D &F2){
+            return Vector3D(F1.name+"plus"+F2.name, F1.x + F2.x, F1.y + F2.y, F1.z + F2.z);
         }
 
-        static double dot(const Field &F1, const Field &F2){
-            return (F1.a * F2.a) + (F1.b * F2.b) + (F1.c * F2.c);
+        static double dot(const Vector3D &F1, const Vector3D &F2){
+            return (F1.x * F2.x) + (F1.y * F2.y) + (F1.z * F2.z);
         }
 
-        static Field cross(const Field &F1, const Field &F2){
-            return Field(F1.name+"cross"+F2.name, (F1.b*F2.c)-(F1.c*F2.b),(F1.c*F2.a)-(F1.a*F2.c),(F1.a*F2.b)-(F1.b*F2.a));
+        static Vector3D cross(const Vector3D &F1, const Vector3D &F2){
+            return Vector3D(F1.name+"cross"+F2.name, (F1.y*F2.z)-(F1.z*F2.y),(F1.z*F2.x)-(F1.x*F2.z),(F1.x*F2.y)-(F1.y*F2.x));
         }
 
+        double getX(const Vector3D &V){
+            return x;
+        }
+        double getY(const Vector3D &V){
+            return y;
+        }
+        double getZ(const Vector3D &V){
+            return z;
+        }
     private:
         string name;
-        double a, b, c;
+        double x, y, z;
         double norm;
 };
 
